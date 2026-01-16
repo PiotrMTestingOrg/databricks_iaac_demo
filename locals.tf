@@ -6,7 +6,7 @@ locals {
     silver = {
       comment = "Cleaned and transformed data"
     }
-    reporting = {
+    gold = {
       comment = "Business-level aggregated data"
     }
   }

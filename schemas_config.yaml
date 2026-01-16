@@ -1,0 +1,118 @@
+# Sample YAML configuration for Databricks Unity Catalog Schemas
+# This file demonstrates how to structure schema and grant configurations
+
+catalog_name: "main"
+
+schemas:
+  - name: "bronze"
+    comment: "Raw data ingestion layer"
+    properties:
+      owner: "data_engineers"
+      layer: "bronze"
+    grants:
+      - principal: "data_engineers"
+        privileges:
+          - "CREATE_TABLE"
+          - "CREATE_VIEW"
+          - "MODIFY"
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "data_analysts"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "data_scientists"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+
+  - name: "silver"
+    comment: "Cleaned and validated data layer"
+    properties:
+      owner: "data_engineers"
+      layer: "silver"
+    grants:
+      - principal: "data_engineers"
+        privileges:
+          - "CREATE_TABLE"
+          - "CREATE_VIEW"
+          - "MODIFY"
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "data_analysts"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+          - "CREATE_VIEW"
+      - principal: "data_scientists"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+
+  - name: "gold"
+    comment: "Business-level aggregated data layer"
+    properties:
+      owner: "data_engineers"
+      layer: "gold"
+    grants:
+      - principal: "data_engineers"
+        privileges:
+          - "CREATE_TABLE"
+          - "CREATE_VIEW"
+          - "MODIFY"
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "data_analysts"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+          - "CREATE_VIEW"
+      - principal: "data_scientists"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "business_users"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+
+  - name: "ml_features"
+    comment: "Machine learning feature store"
+    properties:
+      owner: "data_scientists"
+      layer: "ml"
+    grants:
+      - principal: "data_scientists"
+        privileges:
+          - "CREATE_TABLE"
+          - "CREATE_VIEW"
+          - "CREATE_FUNCTION"
+          - "MODIFY"
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "ml_engineers"
+        privileges:
+          - "CREATE_TABLE"
+          - "MODIFY"
+          - "SELECT"
+          - "READ_METADATA"
+      - principal: "data_engineers"
+        privileges:
+          - "SELECT"
+          - "READ_METADATA"
+
+  - name: "sandbox"
+    comment: "Development and testing environment"
+    properties:
+      owner: "data_engineers"
+      layer: "dev"
+    grants:
+      - principal: "data_engineers"
+        privileges:
+          - "ALL_PRIVILEGES"
+      - principal: "data_analysts"
+        privileges:
+          - "ALL_PRIVILEGES"
+      - principal: "data_scientists"
+        privileges:
+          - "ALL_PRIVILEGES"
