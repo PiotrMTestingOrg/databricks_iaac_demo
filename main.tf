@@ -1,7 +1,7 @@
 # External location pointing to ADLS container
 resource "databricks_external_location" "adls" {
   name            = "${var.project}_adls_external_location"
-  url             = "abfss://data@${data.azurerm_storage_account.adls.name}.dfs.core.windows.net/${var.project}/"
+  url             = "abfss://data@${data.azurerm_storage_account.adls.name}.dfs.core.windows.net/${var.project}"
   credential_name = "${var.project}_adls_credential"
   comment         = "External location for Azure Data Lake - ${var.project} project"
 }
