@@ -65,7 +65,7 @@ runs:
           ENV: ${{ inputs.environment }}
           TF_VAR_subscription_id: ${{ inputs.azure_subscription_id }}
           TF_VAR_deployment_identity_id: ${{ inputs.azure_principal_id }}
-        working-directory: iaac/${{ inputs.project }}
+        working-directory: .
 
         run: |
           terraform init \

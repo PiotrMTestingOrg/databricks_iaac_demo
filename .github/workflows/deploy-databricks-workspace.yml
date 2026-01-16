@@ -9,6 +9,7 @@ on:
         default: 'dev'
         type: choice
         options:
+          - demo
           - dev
           - test
           - prod
