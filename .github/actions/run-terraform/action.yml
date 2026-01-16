@@ -76,4 +76,4 @@ runs:
             -backend-config="use_oidc=true"
 
           terraform validate
-          terraform ${{ inputs.command }} -var-file="parameters/$ENV.tfvars" ${{ inputs.flags }} -input=false
+          terraform ${{ inputs.command }} ${{ inputs.flags }} -input=false
